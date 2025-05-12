@@ -22,6 +22,17 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 
-	fmt.Println("Hello World")
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
+	http.HandleFunc("/", handler)
+
+	log.Printf("Listening on port %s", port)
+	err := http.ListenAndServe(":"+port, nil)
+	if err != nil {
+		log.Fatal("Can't start server: ", err)
+	}
 
 }
