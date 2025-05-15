@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: simple-go-app-service # Имя сервиса
+  name: simple-go-app-service
   labels:
     app: simple-go-app
 spec:
   selector:
-    app: simple-go-app # Должен совпадать с лейблом пода в deployment.yaml
+    app: simple-go-app
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 8080 # Порт контейнера
-  type: NodePort # Для доступа снаружи кластера
+      targetPort: 8080
+  type: NodePort
