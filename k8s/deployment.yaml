@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-go-app-deployment # Имя деплоймента
+  labels:
+    app: simple-go-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: simple-go-app
+  template:
+    metadata:
+      labels:
+        app: simple-go-app
+    spec:
+      containers:
+        - name: simple-go-app-container
+          image: go-hello
+          imagePullPolicy: Never # ОЧЕНЬ ВАЖНО для Kind с локальными образами!
+          ports:
+            - containerPort: 8080
+          env:
+            - name: PORT
+              value: "8080"
